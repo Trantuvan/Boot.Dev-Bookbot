@@ -2,10 +2,17 @@ def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
     num_words = count_words(text)
-    num_letters = count_letter(text)
-    # print(text)
-    print(f"{num_words} words found in the document")
-    print(f"{num_letters} letters found in the document")
+    letters_dict = count_letter(text)
+    letters_lst = [letter for letter in letters_dict if letter.isalpha()]
+    letters_lst.sort()
+    print(letters_lst)
+    print("--- Begin report of books/frankenstein.txt ---")
+    print(f"{num_words} words found in the document \n")
+
+    for letter in letters_lst:
+        print(f"The '{letter}' character was found {letters_dict[letter]} times")
+
+    print("--- End report ---")
 
 def get_book_text(path):
     with open(path) as f:
